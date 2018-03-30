@@ -1,4 +1,4 @@
-package com.anabuigues.webservices.webservices;
+package com.anabuigues.webservices.webservices.helloWorld;
 
 public class HelloWorldBean {
 	
