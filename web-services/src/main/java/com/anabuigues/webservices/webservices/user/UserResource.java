@@ -1,11 +1,15 @@
 package com.anabuigues.webservices.webservices.user;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,14 +41,22 @@ public class UserResource {
 	}
 
 	@GetMapping("/users/{user-id}")
-	public User detailUser(@PathVariable("user-id") int userId) {
+	public Resource<User> detailUser(@PathVariable("user-id") int userId) {
 		User user = usersDao.findOne(userId);
 
 		if (user == null) {
 			throw new UserNotFoundException("id-" + userId);
 		}
 
-		return user;
+		// HATEOAS
+		Resource<User> resource = new Resource<>(user);
+
+		ControllerLinkBuilder linkTo = ControllerLinkBuilder
+				.linkTo(methodOn(this.getClass()).listUsers());
+
+		resource.add(linkTo.withRel("all-users"));
+
+		return resource;
 	}
 
 	@DeleteMapping("/users/{user-id}")
