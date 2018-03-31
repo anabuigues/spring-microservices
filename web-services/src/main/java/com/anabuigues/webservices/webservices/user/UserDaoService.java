@@ -14,8 +14,8 @@ public class UserDaoService {
 
 	static {
 		users.add(new User(1, "Ana", new Date()));
-		users.add(new User(1, "Héctor", new Date()));
-		users.add(new User(1, "Mami", new Date()));
+		users.add(new User(2, "Héctor", new Date()));
+		users.add(new User(3, "Mami", new Date()));
 	}
 
 	public List<User> findAll() {
@@ -24,7 +24,7 @@ public class UserDaoService {
 
 	public User save(User user) {
 		if (user.getId() == null) {
-			user.setId(usersCount++);
+			user.setId(++usersCount);
 		}
 		users.add(user);
 		return user;
