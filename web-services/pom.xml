@@ -40,11 +40,12 @@
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 		
-		<!-- security -->
+		<!-- security 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		-->
 		
 		<!-- monitoring apis -->
 		<dependency>

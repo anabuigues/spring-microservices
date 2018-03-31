@@ -23,7 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class UserResource {
 
 	@Autowired
-	private UserDaoService usersDao;
+	private UserServices usersDao;
 
 	@GetMapping("/users")
 	public List<User> listUsers() {
